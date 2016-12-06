@@ -11,7 +11,7 @@ There are several ViewHelpers you can use in your templates, check the actual fo
     or <geopicker:translate key="elevationMeters" arguments="{0: 123}"/>
 
     Elevation in feet
-    <geopicker:elevation value="123" feet="1"/>
+    <geopicker:elevation value="123" inFeet="1"/>
     or <geopicker:translate key="elevationFeet" arguments="{0: 123}"/>
 
 

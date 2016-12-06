@@ -12,7 +12,7 @@ sample entry can look like this:
         'constraints' => array(
             'depends' => array(
                 'typo3' => '6.2',
-                'geopicker' => '1.0.0',
+                'geopicker' => '1.0.0', // of course version number should be confirmed by you
             ),
             ...,
         ),

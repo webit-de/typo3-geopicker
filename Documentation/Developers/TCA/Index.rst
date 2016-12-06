@@ -105,7 +105,7 @@ What about wizard in IRRE?
 ==========================
 
 If your Point model is just IRRE element it won't include the required JS with the common wizard automatically.
-Therefore in your **parent** form you need to add it yourself (preferebly somwhere at the beginning of :samp:`showitem` list
+Therefore in your **parent** form you need to add it yourself (preferably somewhere at the beginning of :samp:`showitem` list )
 
 .. code-block:: php
 

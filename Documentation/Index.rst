@@ -27,7 +27,7 @@ GeoPicker
 		BE extension that allows to handle GPS coordinate fields in your own extensions.
 
 	:Keywords:
-		maps,gps,coordinates,,latitude,longitude,geocoding,development
+		maps, gps, coordinates, latitude, longitude, geocoding, development
 
 	:Copyright:
 		2015

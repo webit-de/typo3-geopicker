@@ -9,8 +9,8 @@ As you will see in this sample the last element :samp:`elevation` has a wizard w
 The below section will render the pallet in your BE form
 
 .. figure:: ../../Images/sample_fields.png
-	:width: 500px
-	:alt: Sample fields filled with GeoPicker
+   :width: 500px
+   :alt: Sample fields filled with GeoPicker
 
     	Sample fields filled with GeoPicker
 

@@ -2,8 +2,8 @@ For developers
 --------------
 
 .. toctree::
-	:maxdepth: 5
-	:titlesonly:
+   :maxdepth: 5
+   :titlesonly:
   	:glob:
 
   	HowToStart/Index

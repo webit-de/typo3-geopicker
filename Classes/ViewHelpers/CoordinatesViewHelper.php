@@ -38,7 +38,8 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * Class CoordinatesViewHelper
  * @package BIESIOR\Geopicker\ViewHelpers
  */
-class CoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class CoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
     /**
      * @param mixed $latitude
@@ -46,12 +47,12 @@ class CoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      *
      * @return string
      */
-    public function render($latitude, $longitude) {
+    public function render($latitude, $longitude)
+    {
         if (!GeopickerUtils::areCoordinatesValid($latitude, $longitude)) {
             return LocalizationUtility::translate('validationError', 'geopicker');
         }
 
         return GeopickerUtils::decimalRounded($latitude, $longitude);
     }
-
 }

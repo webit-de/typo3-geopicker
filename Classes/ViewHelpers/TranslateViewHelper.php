@@ -70,14 +70,16 @@ namespace BIESIOR\Geopicker\ViewHelpers;
  * value of id "key1" in the current website language
  * </output>
  */
-class TranslateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class TranslateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
     /**
      * Initializes arguments for Translate ViewHelper
      *
      * @return void
      */
-    public function initializeArguments() {
+    public function initializeArguments()
+    {
         $this->registerArgument('key', 'string', 'Translation Key');
         $this->registerArgument('id', 'string', 'Translation Key compatible to TYPO3 Flow');
         $this->registerArgument('default', 'string', 'if the given locallang key could not be found, this value is used. If this argument is not set, child nodes will be used to render the default');
@@ -93,7 +95,8 @@ class TranslateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      *
      * @return string The translated key or tag body if key doesn't exist
      */
-    public function render() {
+    public function render()
+    {
         $id = $this->hasArgument('id') ? $this->arguments['id'] : $this->arguments['key'];
 
         if (strlen($id) > 0) {
@@ -110,11 +113,11 @@ class TranslateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      *
      * @return string The translated key or tag body if key doesn't exist
      */
-    protected function renderTranslation($id) {
-
+    protected function renderTranslation($id)
+    {
         $value = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate($id, 'geopicker', $this->arguments['arguments']);
-        if ($value === NULL) {
-            $value = $this->arguments['default'] !== NULL ? $this->arguments['default'] : $this->renderChildren();
+        if ($value === null) {
+            $value = $this->arguments['default'] !== null ? $this->arguments['default'] : $this->renderChildren();
             if (is_array($this->arguments['arguments'])) {
                 $value = vsprintf($value, $this->arguments['arguments']);
             }

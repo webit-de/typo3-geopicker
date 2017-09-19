@@ -38,7 +38,8 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * Class CoordinatesViewHelper
  * @package BIESIOR\Geopicker\ViewHelpers
  */
-class DmsCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DmsCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
     /**
      * @param mixed $latitude
@@ -48,12 +49,12 @@ class DmsCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstract
      *
      * @return string
      */
-    public function render($latitude, $longitude, $elevation = null, $inFeet = false) {
+    public function render($latitude, $longitude, $elevation = null, $inFeet = false)
+    {
         if (!GeopickerUtils::areCoordinatesValid($latitude, $longitude)) {
             return LocalizationUtility::translate('validationError', 'geopicker');
         }
 
         return \BIESIOR\Geopicker\Utils\GeopickerUtils::decimalToDMS($latitude, $longitude, $elevation, $inFeet);
     }
-
 }

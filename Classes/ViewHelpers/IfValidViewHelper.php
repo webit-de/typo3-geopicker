@@ -13,6 +13,7 @@
 
 
 namespace BIESIOR\Geopicker\ViewHelpers;
+
 use BIESIOR\Geopicker\Utils\GeopickerUtils;
 
 /**
@@ -25,7 +26,8 @@ use BIESIOR\Geopicker\Utils\GeopickerUtils;
  * It's based on <f:if> VH, so you can use <f:then> and <f:else> blocks inside
  *
  */
-class IfValidViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
+class IfValidViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper
+{
 
     /**
      * renders <f:then> child if coordinates are valid, otherwise renders <f:else> child.
@@ -36,7 +38,8 @@ class IfValidViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditi
      * @return string the rendered string
      * @api
      */
-    public function render($latitude, $longitude) {
+    public function render($latitude, $longitude)
+    {
         if (GeopickerUtils::areCoordinatesValid($latitude, $longitude)) {
             return $this->renderThenChild();
         } else {

@@ -8,12 +8,12 @@
 
 namespace BIESIOR\Geopicker;
 
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
-class Button {
-    public function render($PA, $fObj) {
-
+class Button
+{
+    public function render($PA, $fObj)
+    {
         $table = $PA['table'];
         $field = $PA['field'];
         $uid = $PA['row']['uid'];
@@ -22,7 +22,9 @@ class Button {
 
         $elevationField = $PA['fieldConfig']['wizards']['gps']['params']['elevation']['field'];
         $elevationUnit = $PA['fieldConfig']['wizards']['gps']['params']['elevation']['unit'];
-        if ($elevationUnit !== 'feet') $elevationUnit = 'meters';
+        if ($elevationUnit !== 'feet') {
+            $elevationUnit = 'meters';
+        }
 
         $pickFunctionName = "geoPicker('$table', '$uid', '$latFieldName', '$lonFieldName', '$elevationField', '$elevationUnit')";
 
@@ -39,8 +41,8 @@ class Button {
         return $formField;
     }
 
-    public function js($PA, $fObj) {
-
+    public function js($PA, $fObj)
+    {
         $moduleUrl = BackendUtility::getModuleUrl(
             'wizard_geopicker'
         );
@@ -68,9 +70,8 @@ class Button {
         return $formField;
     }
 
-    public function header($PA, $fObj) {
+    public function header($PA, $fObj)
+    {
         return $GLOBALS['LANG']->sL($PA['parameters']['description']);
     }
-
-
 }

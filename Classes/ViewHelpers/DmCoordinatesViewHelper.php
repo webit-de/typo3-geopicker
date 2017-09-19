@@ -26,6 +26,7 @@
  ***************************************************************/
 
 namespace BIESIOR\Geopicker\ViewHelpers;
+
 use BIESIOR\Geopicker\Utils\GeopickerUtils;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -37,7 +38,8 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  * Class CoordinatesViewHelper
  * @package BIESIOR\Geopicker\ViewHelpers
  */
-class DmCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DmCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
     /**
      * @param mixed $latitude
@@ -45,12 +47,12 @@ class DmCoordinatesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
      *
      * @return string
      */
-    public function render($latitude, $longitude) {
+    public function render($latitude, $longitude)
+    {
         if (!GeopickerUtils::areCoordinatesValid($latitude, $longitude)) {
             return LocalizationUtility::translate('validationError', 'geopicker');
         }
 
         return \BIESIOR\Geopicker\Utils\GeopickerUtils::decimalToDM($latitude, $longitude);
     }
-
 }

@@ -35,9 +35,10 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 /**
  * CommentController
  */
-class GeopickerController extends ActionController {
-
-    public function geoPickerWizard() {
+class GeopickerController extends ActionController
+{
+    public function geoPickerWizard()
+    {
         $p = GeneralUtility::_GET('P');
 
         $latField = $p['latField'];
@@ -46,7 +47,9 @@ class GeopickerController extends ActionController {
         $uid = $p['uid'];
         $elevationField = $p['elevField'];
         $elevationUnit = $p['elevUnit'];
-        if ($elevationUnit !== 'feet') $elevationUnit = 'meters';
+        if ($elevationUnit !== 'feet') {
+            $elevationUnit = 'meters';
+        }
 
         $data = array();
         $data['latField'] = $latField;
@@ -73,7 +76,5 @@ class GeopickerController extends ActionController {
         $view->assign('data', $data);
         $rendered = $view->render();
         echo $rendered;
-
     }
-
 }

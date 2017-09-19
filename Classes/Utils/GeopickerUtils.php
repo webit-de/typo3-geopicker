@@ -30,7 +30,8 @@ define('DEGREES_CHAR', '°'); // Unicode Character 'DEGREE SIGN' (U+00B0)
 define('MINUTES_CHAR', '′'); // Unicode Character 'PRIME' (U+2032)
 define('SECONDS_CHAR', '″'); // Unicode Character 'DOUBLE PRIME' (U+2033)
 
-class GeopickerUtils {
+class GeopickerUtils
+{
 
     /**
      * Converts decimal coordinates to DMS string
@@ -43,10 +44,12 @@ class GeopickerUtils {
      *
      * @return string
      */
-    public static function decimalToDMS($lat, $lon, $elevation = null, $inFeet = false, $format = 'display') {
-
+    public static function decimalToDMS($lat, $lon, $elevation = null, $inFeet = false, $format = 'display')
+    {
         $spaceChar = ', ';
-        if ($format == 'iso') $spaceChar = ' ';
+        if ($format == 'iso') {
+            $spaceChar = ' ';
+        }
         $latArray = self::decToDmsArray($lat, 'N', 'S');
         $lonArray = self::decToDmsArray($lon, 'E', 'W');
         $outArray = array(
@@ -76,7 +79,8 @@ class GeopickerUtils {
     /**
      * Converts decimal coordinates to DMS string
      */
-    public static function decimalRounded($lat, $lon) {
+    public static function decimalRounded($lat, $lon)
+    {
         $outArray = array(
             number_format($lat, 6),
             ', ',
@@ -89,7 +93,8 @@ class GeopickerUtils {
     /**
      * Converts decimal coordinates to DM string
      */
-    public static function decimalToDM($lat, $lon) {
+    public static function decimalToDM($lat, $lon)
+    {
         $latArray = self::decToDmArray($lat, 'N', 'S');
         $lonArray = self::decToDmArray($lon, 'E', 'W');
         $outArray = array(
@@ -102,13 +107,13 @@ class GeopickerUtils {
         );
 
         return implode('', $outArray);
-
     }
 
     /**
      * Checks if coordinates are valid
      */
-    public static function areCoordinatesValid($lat, $lon) {
+    public static function areCoordinatesValid($lat, $lon)
+    {
         $latitude = (float)$lat;
         $longitude = (float)$lon;
         $isValid = (is_numeric($lat) && is_numeric($lon) && $latitude >= -90 && $latitude <= 90 && $longitude >= -180 && $longitude <= 180);
@@ -117,8 +122,8 @@ class GeopickerUtils {
     }
 
 
-    protected function decToDmsArray($floatDeg, $normalDir, $reverseDir) {
-
+    protected function decToDmsArray($floatDeg, $normalDir, $reverseDir)
+    {
         $sign = $normalDir;
         if ($floatDeg < 0) {
             $sign = $reverseDir;
@@ -135,8 +140,8 @@ class GeopickerUtils {
         return array("deg" => $deg, "min" => $min, "sec" => $sec, 'sign' => $sign);
     }
 
-    protected function decToDmArray($floatDeg, $normalDir, $reverseDir) {
-
+    protected function decToDmArray($floatDeg, $normalDir, $reverseDir)
+    {
         $sign = $normalDir;
         if ($floatDeg < 0) {
             $sign = $reverseDir;
@@ -151,5 +156,4 @@ class GeopickerUtils {
 
         return array("deg" => $deg, "min" => $min, "sec" => '', 'sign' => $sign);
     }
-
 }

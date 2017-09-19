@@ -35,7 +35,8 @@ namespace BIESIOR\Geopicker\ViewHelpers;
  * Class CoordinatesViewHelper
  * @package BIESIOR\Geopicker\ViewHelpers
  */
-class ElevationViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class ElevationViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
     /**
      * @param mixed $value
@@ -43,10 +44,11 @@ class ElevationViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
      *
      * @return string
      */
-    public function render($value, $inFeet = false) {
+    public function render($value, $inFeet = false)
+    {
         $trans = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate((($inFeet) ? 'elevationFeet' : 'elevationMeters'), 'geopicker', array(0 => $value));
-        if ($trans === NULL) {
-            $trans = $this->arguments['default'] !== NULL ? $this->arguments['default'] : $this->renderChildren();
+        if ($trans === null) {
+            $trans = $this->arguments['default'] !== null ? $this->arguments['default'] : $this->renderChildren();
             if (is_array($this->arguments['arguments'])) {
                 $trans = vsprintf($trans, $this->arguments['arguments']);
             }
@@ -56,5 +58,4 @@ class ElevationViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewH
 
         return $trans;
     }
-
 }

@@ -30,13 +30,24 @@ namespace BIESIOR\Geopicker\Controller;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * CommentController
  */
 class GeopickerController extends ActionController
 {
+
+    /**
+     * ObjectManager to create needed Objects in init-function
+     *
+     * @var ObjectManager
+     */
+    protected $objectManager;
+
+
     public function geoPickerWizard()
     {
         $p = GeneralUtility::_GET('P');
@@ -45,29 +56,36 @@ class GeopickerController extends ActionController
         $lonField = $p['lonField'];
         $table = $p['table'];
         $uid = $p['uid'];
+        $elevationEditable = $p['elevationEditable'];
         $elevationField = $p['elevField'];
         $elevationUnit = $p['elevUnit'];
         if ($elevationUnit !== 'feet') {
             $elevationUnit = 'meters';
         }
+        $startLat = $p['startLat'];
+        $startLon = $p['startLon'];
+
+        $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+        $configurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManagerInterface');
+        $typoscriptArray = $configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT,
+            null,
+            null
+        );
 
         $data = array();
+        $data['googleMapsApiKey'] = $typoscriptArray['module.']['tx_geopicker.']['settings.']['googleMapsApiKey'];
         $data['latField'] = $latField;
         $data['lonField'] = $lonField;
+        $data['elevationEditable'] = $elevationEditable;
         $data['elevationField'] = $elevationField;
         $data['dataLatField'] = "data[$table][$uid][$latField]";
         $data['dataLonField'] = "data[$table][$uid][$lonField]";
         $data['dataElevationField'] = "data[$table][$uid][$elevationField]";
         $data['table'] = $table;
         $data['elevationUnit'] = $elevationUnit;
-
-        $funcs = "
-            window.opener.typo3form.fieldGet('data[$table][2][lat]', 'trim', '', 1, '');
-            window.opener.typo3form.fieldGet('data[$table][2][lon]', 'trim', '', 1, '');
-            window.opener.TBE_EDITOR.fieldChanged('$table', '$uid', 'lat', 'data[$table][$latField][lat]');
-            window.opener.TBE_EDITOR.fieldChanged('$table', '$uid', 'lon', 'data[$table][$latField][lon]');
-        ";
-        $data['funcs'] = $funcs;
+        $data['startLat'] = $startLat;
+        $data['startLon'] = $startLon;
         $data['extPath'] = ExtensionManagementUtility::extRelPath('geopicker');
 
         /** @var $view \TYPO3\CMS\Fluid\View\StandaloneView */

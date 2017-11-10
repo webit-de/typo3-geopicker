@@ -1,10 +1,10 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = array(
-    'title' => 'GeoPicker',
+    'title' => 'GeoPicker /* PATCHED */',
     'description' => 'BE extension that allows to handle GPS coordinate fields in your own extensions',
     'category' => 'module',
-    'version' => '0.0.2',
+    'version' => '0.0.3',
     'state' => 'stable',
     'uploadfolder' => false,
     'createDirs' => '',
@@ -13,14 +13,16 @@ $EM_CONF[$_EXTKEY] = array(
     'author_email' => 'marcus@biesioroff.com',
     'author_company' => 'Marcus Biesioroff Group',
     'constraints' =>
+    array(
+        'depends' =>
         array(
-            'depends' =>
-                array(
-                    'typo3' => '6.2.0-6.2.99',
-                ),
-            'conflicts' =>
-                array(),
-            'suggests' =>
-                array(),
+            'typo3' => '7.6.0-8.7.99',
         ),
+        'conflicts' =>
+        array(
+        ),
+        'suggests' =>
+        array(
+        ),
+    ),
 );

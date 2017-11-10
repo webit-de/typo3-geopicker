@@ -17,16 +17,19 @@ class Button
         $table = $PA['table'];
         $field = $PA['field'];
         $uid = $PA['row']['uid'];
-        $latFieldName = $PA['fieldConfig']['wizards']['gps']['params']['latField'];
-        $lonFieldName = $PA['fieldConfig']['wizards']['gps']['params']['lonField'];
+        $latFieldName = $PA['wConf']['params']['latField'];
+        $lonFieldName = $PA['wConf']['params']['lonField'];
+        $startLat = $PA['wConf']['params']['startLat'];
+        $startLon = $PA['wConf']['params']['startLon'];
 
-        $elevationField = $PA['fieldConfig']['wizards']['gps']['params']['elevation']['field'];
-        $elevationUnit = $PA['fieldConfig']['wizards']['gps']['params']['elevation']['unit'];
+        $elevationEditable = $PA['wConf']['params']['elevationEditable'];
+        $elevationField = $PA['wConf']['params']['elevation']['field'];
+        $elevationUnit = $PA['wConf']['params']['elevation']['unit'];
         if ($elevationUnit !== 'feet') {
             $elevationUnit = 'meters';
         }
 
-        $pickFunctionName = "geoPicker('$table', '$uid', '$latFieldName', '$lonFieldName', '$elevationField', '$elevationUnit')";
+        $pickFunctionName = "geoPicker('$table', '$uid', '$latFieldName', '$lonFieldName', '$elevationField', '$elevationUnit', '$startLat', '$startLon', '$elevationEditable')";
 
         $formField = '<div>';
         $formField .= '<input type="button" name="' . $PA['itemFormElName'] . '"';
@@ -51,7 +54,7 @@ class Button
 
 <script>
     if(typeof geoPicker != "function"){
-        window.geoPicker= function(table, uid, latField, lonField, elevationField, elevationUnit){
+        window.geoPicker= function(table, uid, latField, lonField, elevationField, elevationUnit, startLat, startLon, elevationEditable){
             var url = "' . $moduleUrl . '";
             url += "&P[table]="+table;
             url += "&P[uid]="+uid;
@@ -59,6 +62,9 @@ class Button
             url += "&P[lonField]="+lonField;
             url += "&P[elevField]="+elevationField;
             url += "&P[elevUnit]="+elevationUnit;
+            url += "&P[startLat]="+startLat;
+            url += "&P[startLon]="+startLon;
+            url += "&P[elevationEditable]="+elevationEditable;
             window.open(url, "geoPickerWindow", "width=900,height=600");
         }
     }

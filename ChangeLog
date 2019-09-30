@@ -1,4 +1,0 @@
-2015-06-11  Marcus Biesioroff  <marcus@bioesioroff.com>
-
-	* Released version 0.0.2
-	* Fixed bug: Inline styles in BE view causes occasionally problems with Fluid arguments's rendering

@@ -1,5 +1,5 @@
 {
-  "name": "typo3-ter/geopicker",
+  "name": "biesior/geopicker",
   "description": "BE extension that allows to handle GPS coordinate fields in your own extensions.",
   "license": "GPL-2.0-or-later",
   "type": "typo3-cms-extension",
@@ -10,5 +10,9 @@
   "autoload": {
     "psr-4": {"BIESIOR\\Geopicker\\": "Classes/"},
     "classmap": ["Configuration/", "Modules/", "tce_evals/"]
+  },
+  "replace": {
+    "geopicker": "self.version",
+    "typo3-ter/geopicker": "self.version"
   }
 }
